@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/depremnobetcisi
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+app:
+  telegram:
+    enabled: ${TELEGRAM_ENABLED:false}
+    bot-token: ${TELEGRAM_BOT_TOKEN:}
+  earthquake:
+    poll-interval-ms: 30000
+
+logging:
+  level:
+    com.depremnobetcisi: DEBUG
+    org.hibernate.SQL: DEBUG

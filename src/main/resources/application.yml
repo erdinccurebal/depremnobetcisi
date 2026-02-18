@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: deprem-nobetcisi
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+app:
+  telegram:
+    enabled: false
+    bot-token: ${TELEGRAM_BOT_TOKEN:}
+  kandilli:
+    base-url: https://api.orhanaydogdu.com.tr
+  earthquake:
+    poll-interval-ms: 30000

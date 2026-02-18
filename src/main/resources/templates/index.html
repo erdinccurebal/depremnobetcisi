@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deprem Nöbetçisi - Canlı Harita</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <header>
+        <h1>🏠 Deprem Nöbetçisi</h1>
+        <p>Türkiye Deprem İzleme ve Yardım Haritası</p>
+    </header>
+
+    <div class="controls">
+        <label>
+            <input type="checkbox" id="showEarthquakes" checked> Depremler
+        </label>
+        <label>
+            <input type="checkbox" id="showHelpRequests" checked> Yardım Talepleri
+        </label>
+        <select id="timeRange">
+            <option value="6">Son 6 saat</option>
+            <option value="12">Son 12 saat</option>
+            <option value="24" selected>Son 24 saat</option>
+            <option value="48">Son 48 saat</option>
+        </select>
+        <button id="refreshBtn">🔄 Yenile</button>
+    </div>
+
+    <div id="map"></div>
+
+    <div id="stats">
+        <span id="earthquakeCount">Deprem: 0</span> |
+        <span id="helpRequestCount">Yardım Talebi: 0</span>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script th:src="@{/js/map.js}"></script>
+    <script th:src="@{/js/help-requests.js}"></script>
+</body>
+</html>
