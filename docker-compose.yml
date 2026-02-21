@@ -6,10 +6,25 @@ services:
       POSTGRES_DB: depremnobetcisi
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-    ports:
-      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  app:
+    build: .
+    container_name: depremnobetcisi-app
+    ports:
+      - "4000:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DATABASE_URL: jdbc:postgresql://postgres:5432/depremnobetcisi
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: postgres
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      APP_TELEGRAM_ENABLED: ${TELEGRAM_ENABLED:-true}
+    depends_on:
+      - postgres
+    restart: unless-stopped
 
 volumes:
   postgres_data:
